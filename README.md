@@ -17,9 +17,7 @@ This project addresses the need for a comprehensive climate-agriculture analysis
 
 ## Data Source
 The dataset used for this project contains historical agricultural, climate, and economic indicators from 1990 to 2024. 
-[Here ](https://drive.google.com/file/d/1RJkkVuwN6doxLdD5W-Ur_-DiugqLEuo1/view?usp=drive_link)
-
-
+[Here ](https://drive.google.com/file/d/1RJkkVuwN6doxLdD5W-Ur_-DiugqLEuo1/view?usp=drive_link)  
 
 Data Categories
 1.	Climate Variables  
@@ -28,6 +26,7 @@ o	Precipitation
 o	Climate Risk  
 o	Extreme Weather Pressure  
 o	Climate Severity
+
 3.	Agricultural Variables  
 o	Crop Yield
 o	Irrigation Access
@@ -35,11 +34,13 @@ o	Fertilizer Usage
 o	Pesticide Usage
 o	Soil Health Index
 o	Yield Efficiency
-4.	Economic Variables
+
+5.	Economic Variables
 o	Economic Impact
 o	Loss per Yield
 o	Economic Vulnerability
 o	High-Risk Economic Loss
+
 Geographic Coverage
 The analysis includes agricultural data across multiple countries including:
 •	Nigeria
