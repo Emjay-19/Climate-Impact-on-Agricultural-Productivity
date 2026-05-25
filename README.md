@@ -78,6 +78,24 @@ SQL was used for data transformation, preprocessing, and feature engineering.
 New Columns Created in SQL  
 The following calculated columns were created to improve analysis and segmentation:  
 o	Country Group  
+Categorize countries into broader climate zones for grouped environmental analysis.  
+``` SQL
+ALTER TABLE climate_agriculture_data
+ADD COLUMN country_group VARCHAR(30);
+UPDATE climate_agriculture_data
+SET country_group =
+CASE
+    WHEN country IN ('Nigeria', 'India', 'Brazil')
+        THEN 'Tropical'
+    WHEN country IN ('USA', 'France', 'China')
+        THEN 'Temperate'
+    WHEN country IN ('Canada', 'Russia')
+        THEN 'Cold'
+    WHEN country IN ('Australia', 'Argentina')
+        THEN 'Arid'
+END;
+```
+
 o	Crop Category  
 o	Irrigation Resilience Ratio  
 o	Economic Vulnerability  
@@ -85,39 +103,14 @@ o	Climate Risk Score
 o	Yield Efficiency Index  
 o	Climate Severity  
 These transformations helped categorize countries, classify crop groups, evaluate climate exposure, and measure agricultural efficiency.
-
-/* =========================================================
-   COUNTRY GROUP CLASSIFICATION
-   PURPOSE:
-   Categorize countries into broader climate zones
-   for grouped environmental analysis.
+   
 
    INSIGHT:
    Enables comparison of agricultural productivity
    across tropical, temperate, arid, and cold climates.
 ========================================================= */
 
-ALTER TABLE climate_agriculture_data
-ADD COLUMN country_group VARCHAR(30);
 
-UPDATE climate_agriculture_data
-SET country_group =
-
-CASE
-
-    WHEN country IN ('Nigeria', 'India', 'Brazil')
-        THEN 'Tropical'
-
-    WHEN country IN ('USA', 'France', 'China')
-        THEN 'Temperate'
-
-    WHEN country IN ('Canada', 'Russia')
-        THEN 'Cold'
-
-    WHEN country IN ('Australia', 'Argentina')
-        THEN 'Arid'
-
-END;
 
 
 
