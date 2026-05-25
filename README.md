@@ -86,6 +86,539 @@ o	Yield Efficiency Index
 o	Climate Severity  
 These transformations helped categorize countries, classify crop groups, evaluate climate exposure, and measure agricultural efficiency.
 
+/* =========================================================
+   CLIMATE & SUSTAINABLE AGRICULTURE ANALYTICS PROJECT
+   PURPOSE:
+   Build a structured agricultural-climate dataset for
+   SQL analysis and Power BI dashboard visualization.
+========================================================= */
+
+
+/* =========================================================
+   CREATE MAIN TABLE
+   PURPOSE:
+   Store raw agricultural, climate, environmental,
+   and economic variables for analysis.
+
+   INSIGHT:
+   This table forms the foundation of the analytical
+   model used to evaluate climate impact on agriculture.
+========================================================= */
+
+CREATE TABLE climate_agriculture_data (
+
+    date DATE,
+    country VARCHAR(100),
+    region VARCHAR(100),
+    crop_type VARCHAR(100),
+
+    average_temperature NUMERIC(5,2),
+    total_precipitation NUMERIC(10,2),
+    co2_emissions_mt NUMERIC(15,2),
+
+    crop_yield_mt_per_ha NUMERIC(10,2),
+
+    extreme_weather_events INT,
+
+    irrigation_access_percent NUMERIC(5,2),
+
+    pesticide_use_kg_per_ha NUMERIC(10,2),
+    fertilizer_use_kg_per_ha NUMERIC(10,2),
+
+    soil_health_index NUMERIC(5,2),
+
+    adaptation_strategies TEXT,
+
+    economic_impact_million_usd NUMERIC(15,2)
+
+);
+
+
+
+/* =========================================================
+   COUNTRY GROUP CLASSIFICATION
+   PURPOSE:
+   Categorize countries into broader climate zones
+   for grouped environmental analysis.
+
+   INSIGHT:
+   Enables comparison of agricultural productivity
+   across tropical, temperate, arid, and cold climates.
+========================================================= */
+
+ALTER TABLE climate_agriculture_data
+ADD COLUMN country_group VARCHAR(30);
+
+UPDATE climate_agriculture_data
+SET country_group =
+
+CASE
+
+    WHEN country IN ('Nigeria', 'India', 'Brazil')
+        THEN 'Tropical'
+
+    WHEN country IN ('USA', 'France', 'China')
+        THEN 'Temperate'
+
+    WHEN country IN ('Canada', 'Russia')
+        THEN 'Cold'
+
+    WHEN country IN ('Australia', 'Argentina')
+        THEN 'Arid'
+
+END;
+
+
+
+/* =========================================================
+   CROP CATEGORY CLASSIFICATION
+   PURPOSE:
+   Group crops into broader agricultural categories
+   for easier segmentation and comparison.
+
+   INSIGHT:
+   Helps identify which crop categories are most
+   productive, resource-intensive, or climate-vulnerable.
+========================================================= */
+
+ALTER TABLE climate_agriculture_data
+ADD COLUMN crop_category VARCHAR(30);
+
+UPDATE climate_agriculture_data
+SET crop_category =
+
+CASE
+
+    WHEN crop_type IN ('Rice', 'Wheat', 'Corn', 'Barley')
+    THEN 'Cereals'
+
+    WHEN crop_type IN ('Cotton', 'Sugarcane', 'Soybeans')
+    THEN 'Cash Crops'
+
+    WHEN crop_type IN ('Coffee', 'Fruits', 'Vegetables')
+    THEN 'Perishable Crops'
+
+END;
+
+
+
+/* =========================================================
+   PREVIEW RAW DATA
+   PURPOSE:
+   Verify that records were loaded correctly.
+
+   INSIGHT:
+   Used for initial data validation and quality checks.
+========================================================= */
+
+SELECT * 
+FROM climate_agriculture_data;
+
+
+
+/* =========================================================
+   CLIMATE RISK SCORE
+   PURPOSE:
+   Create a composite climate vulnerability metric
+   using temperature, emissions, and extreme weather.
+
+   INSIGHT:
+   Higher scores indicate regions/countries facing
+   greater climate pressure and agricultural risk.
+========================================================= */
+
+ALTER TABLE climate_agriculture_data
+ADD COLUMN climate_risk_score NUMERIC;
+
+UPDATE climate_agriculture_data
+SET climate_risk_score =
+
+(
+    (average_temperature * 0.4) +
+    (co2_emissions_mt * 0.3) +
+    (extreme_weather_events * 0.3)
+);
+
+
+
+/* =========================================================
+   YIELD EFFICIENCY INDEX
+   PURPOSE:
+   Measure how efficiently agricultural inputs
+   generate crop output.
+
+   INSIGHT:
+   Higher values indicate better farming efficiency
+   with lower resource consumption.
+========================================================= */
+
+ALTER TABLE climate_agriculture_data
+ADD COLUMN yield_efficiency_index NUMERIC;
+
+UPDATE climate_agriculture_data
+SET yield_efficiency_index =
+
+crop_yield_mt_per_ha /
+
+NULLIF(
+    fertilizer_use_kg_per_ha +
+    pesticide_use_kg_per_ha,
+    0
+);
+
+
+
+/* =========================================================
+   ECONOMIC VULNERABILITY CLASSIFICATION
+   PURPOSE:
+   Categorize financial exposure levels caused
+   by climate-related agricultural impacts.
+
+   INSIGHT:
+   Helps identify countries/crops with the
+   highest economic risk exposure.
+========================================================= */
+
+ALTER TABLE climate_agriculture_data
+ADD COLUMN economic_vulnerability VARCHAR(20);
+
+UPDATE climate_agriculture_data
+SET economic_vulnerability =
+
+CASE
+
+    WHEN economic_impact_million_usd >= 800
+    THEN 'High Risk'
+
+    WHEN economic_impact_million_usd >= 400
+    THEN 'Medium Risk'
+
+    ELSE 'Low Risk'
+
+END;
+
+
+
+/* =========================================================
+   CLIMATE SEVERITY CLASSIFICATION
+   PURPOSE:
+   Categorize environmental conditions using
+   temperature and extreme weather intensity.
+
+   INSIGHT:
+   Enables comparison of agricultural performance
+   under different climate stress conditions.
+========================================================= */
+
+ALTER TABLE climate_agriculture_data
+ADD COLUMN climate_severity VARCHAR(20);
+
+UPDATE climate_agriculture_data
+SET climate_severity =
+
+CASE
+
+    -- Severe climate conditions
+    WHEN average_temperature <= -2.5
+         OR extreme_weather_events >= 8
+    THEN 'Severe'
+
+
+    -- Moderate climate stress
+    WHEN average_temperature BETWEEN 25 AND 35
+         OR extreme_weather_events BETWEEN 5 AND 7
+    THEN 'Moderate'
+
+
+    -- Stable agricultural climate
+    WHEN average_temperature BETWEEN 10 AND 24.99
+         AND extreme_weather_events BETWEEN 0 AND 4
+    THEN 'Stable'
+
+
+    -- Cooler but manageable climates
+    WHEN average_temperature BETWEEN 0.01 AND 9.99
+    THEN 'Cool'
+
+
+    -- Remaining cold regions
+    ELSE 'Cold'
+
+END;
+
+
+
+/* =========================================================
+   IRRIGATION RESILIENCE RATIO
+   PURPOSE:
+   Measure how irrigation access offsets
+   climate-related agricultural risks.
+
+   INSIGHT:
+   Higher ratios suggest stronger agricultural
+   resilience against climate stress.
+========================================================= */
+
+ALTER TABLE climate_agriculture_data
+ADD COLUMN irrigation_resilience_ratio NUMERIC;
+
+UPDATE climate_agriculture_data
+SET irrigation_resilience_ratio =
+
+irrigation_access_percent /
+
+NULLIF(climate_risk_score, 0);
+
+
+
+/* =========================================================
+   YIELD LEVEL CLASSIFICATION
+   PURPOSE:
+   Categorize crop productivity levels using
+   crop-specific agricultural yield benchmarks.
+
+   INSIGHT:
+   Helps compare crop performance across countries,
+   climate conditions, and resource availability.
+========================================================= */
+
+ALTER TABLE climate_agriculture_data
+ADD COLUMN yield_level VARCHAR(20);
+
+UPDATE climate_agriculture_data
+SET yield_level =
+
+CASE
+
+    /* =========================
+       CORN YIELD CLASSIFICATION
+    ========================= */
+
+    WHEN crop_type = 'Corn'
+         AND crop_yield_mt_per_ha > 7
+    THEN 'High Yield'
+
+    WHEN crop_type = 'Corn'
+         AND crop_yield_mt_per_ha BETWEEN 4 AND 7
+    THEN 'Medium Yield'
+
+    WHEN crop_type = 'Corn'
+    THEN 'Low Yield'
+
+
+    /* =========================
+       SUGARCANE
+    ========================= */
+
+    WHEN crop_type = 'Sugarcane'
+         AND crop_yield_mt_per_ha > 70
+    THEN 'High Yield'
+
+    WHEN crop_type = 'Sugarcane'
+         AND crop_yield_mt_per_ha BETWEEN 40 AND 70
+    THEN 'Medium Yield'
+
+    WHEN crop_type = 'Sugarcane'
+    THEN 'Low Yield'
+
+
+    /* =========================
+       BARLEY
+    ========================= */
+
+    WHEN crop_type = 'Barley'
+         AND crop_yield_mt_per_ha > 5
+    THEN 'High Yield'
+
+    WHEN crop_type = 'Barley'
+         AND crop_yield_mt_per_ha BETWEEN 2 AND 5
+    THEN 'Medium Yield'
+
+    WHEN crop_type = 'Barley'
+    THEN 'Low Yield'
+
+
+    /* =========================
+       COFFEE
+    ========================= */
+
+    WHEN crop_type = 'Coffee'
+         AND crop_yield_mt_per_ha > 2.5
+    THEN 'High Yield'
+
+    WHEN crop_type = 'Coffee'
+         AND crop_yield_mt_per_ha BETWEEN 1 AND 2.5
+    THEN 'Medium Yield'
+
+    WHEN crop_type = 'Coffee'
+    THEN 'Low Yield'
+
+
+    /* =========================
+       RICE
+    ========================= */
+
+    WHEN crop_type = 'Rice'
+         AND crop_yield_mt_per_ha > 6
+    THEN 'High Yield'
+
+    WHEN crop_type = 'Rice'
+         AND crop_yield_mt_per_ha BETWEEN 3 AND 6
+    THEN 'Medium Yield'
+
+    WHEN crop_type = 'Rice'
+    THEN 'Low Yield'
+
+
+    /* =========================
+       SOYBEANS
+    ========================= */
+
+    WHEN crop_type = 'Soybeans'
+         AND crop_yield_mt_per_ha > 4
+    THEN 'High Yield'
+
+    WHEN crop_type = 'Soybeans'
+         AND crop_yield_mt_per_ha BETWEEN 2 AND 4
+    THEN 'Medium Yield'
+
+    WHEN crop_type = 'Soybeans'
+    THEN 'Low Yield'
+
+
+    /* =========================
+       FRUITS
+    ========================= */
+
+    WHEN crop_type = 'Fruits'
+         AND crop_yield_mt_per_ha > 15
+    THEN 'High Yield'
+
+    WHEN crop_type = 'Fruits'
+         AND crop_yield_mt_per_ha BETWEEN 8 AND 15
+    THEN 'Medium Yield'
+
+    WHEN crop_type = 'Fruits'
+    THEN 'Low Yield'
+
+
+    /* =========================
+       COTTON
+    ========================= */
+
+    WHEN crop_type = 'Cotton'
+         AND crop_yield_mt_per_ha > 3
+    THEN 'High Yield'
+
+    WHEN crop_type = 'Cotton'
+         AND crop_yield_mt_per_ha BETWEEN 1.5 AND 3
+    THEN 'Medium Yield'
+
+    WHEN crop_type = 'Cotton'
+    THEN 'Low Yield'
+
+
+    /* =========================
+       VEGETABLES
+    ========================= */
+
+    WHEN crop_type = 'Vegetables'
+         AND crop_yield_mt_per_ha > 20
+    THEN 'High Yield'
+
+    WHEN crop_type = 'Vegetables'
+         AND crop_yield_mt_per_ha BETWEEN 10 AND 20
+    THEN 'Medium Yield'
+
+    WHEN crop_type = 'Vegetables'
+    THEN 'Low Yield'
+
+
+    /* =========================
+       WHEAT
+    ========================= */
+
+    WHEN crop_type = 'Wheat'
+         AND crop_yield_mt_per_ha > 5
+    THEN 'High Yield'
+
+    WHEN crop_type = 'Wheat'
+         AND crop_yield_mt_per_ha BETWEEN 2 AND 5
+    THEN 'Medium Yield'
+
+    ELSE 'Low Yield'
+
+END;
+
+
+
+/* =========================================================
+   CREATE ANALYTICAL VIEW
+   PURPOSE:
+   Create a clean business-ready analytical layer
+   for Power BI dashboard reporting.
+
+   INSIGHT:
+   Simplifies querying and improves reporting
+   consistency across dashboards.
+========================================================= */
+
+CREATE OR REPLACE VIEW vw_agriculture_analysis AS
+
+SELECT
+
+    date,
+    country,
+    region,
+    crop_type,
+
+    average_temperature,
+    total_precipitation,
+    co2_emissions_mt,
+
+    extreme_weather_events,
+
+    irrigation_access_percent,
+
+    fertilizer_use_kg_per_ha,
+    pesticide_use_kg_per_ha,
+
+    soil_health_index,
+
+    crop_yield_mt_per_ha,
+
+    economic_impact_million_usd,
+
+    climate_risk_score,
+    yield_efficiency_index,
+
+    economic_vulnerability,
+    climate_severity,
+
+    irrigation_resilience_ratio,
+
+    country_group,
+    crop_category
+
+FROM climate_agriculture_data;
+
+
+
+/* =========================================================
+   PREVIEW ANALYTICAL VIEW
+   PURPOSE:
+   Validate transformed analytical dataset before
+   importing into Power BI.
+
+   INSIGHT:
+   Ensures all engineered metrics and classifications
+   are correctly generated for dashboard reporting.
+========================================================= */
+
+SELECT *
+FROM vw_agriculture_analysis
+LIMIT 100;
+
 ### 3.	Power BI  
 Power BI was used for data modeling, dashboard development, KPI tracking, and interactive visualization.  
 **a.	Data Modeling**  
