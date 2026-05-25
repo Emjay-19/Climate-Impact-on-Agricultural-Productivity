@@ -77,8 +77,9 @@ The analysis includes agricultural data across multiple countries including:
 SQL was used for data transformation, preprocessing, and feature engineering.  
 New Columns Created in SQL  
 The following calculated columns were created to improve analysis and segmentation:  
+
 - Country Group  
-Categorize countries into broader climate zones for grouped environmental analysis.  
+**Insight:** Enables comparison of agricultural productivity across tropical, temperate, arid, and cold climates.    
 ``` SQL
 ALTER TABLE climate_agriculture_data
 ADD COLUMN country_group VARCHAR(30);
@@ -96,8 +97,8 @@ CASE
 END;
 ```
 
-- Crop Category
-Insight: Helps identify which crop categories are most productive, resource-intensive, or climate-vulnerable.   
+- Crop Category  
+**Insight:** Helps identify which crop categories are most productive, resource-intensive, or climate-vulnerable.   
 ``` SQL
 ALTER TABLE climate_agriculture_data
 ADD COLUMN crop_category VARCHAR(30);
@@ -114,7 +115,7 @@ END;
 ```
 
 - Climate Risk Score  
-Insight: Higher scores indicate regions/countries facing greater climate pressure and agricultural risk.   
+**Insight:** Higher scores indicate regions/countries facing greater climate pressure and agricultural risk.   
 ``` SQL
 ALTER TABLE climate_agriculture_data
 ADD COLUMN climate_risk_score NUMERIC;
@@ -127,8 +128,8 @@ SET climate_risk_score =
 );
 ```
 
-- Economic Vulnerability
-Insight: Helps identify countries/crops with the highest economic risk exposure.   
+- Economic Vulnerability  
+**Insight:** Helps identify countries/crops with the highest economic risk exposure.   
 ``` SQL
 ALTER TABLE climate_agriculture_data
 ADD COLUMN economic_vulnerability VARCHAR(20);
@@ -145,7 +146,7 @@ END;
 ```
  
 - Yield Efficiency Index  
-Insight: Higher values indicate better farming efficiency with lower resource consumption.   
+**Insight:** Higher values indicate better farming efficiency with lower resource consumption.   
 ``` SQL
 ALTER TABLE climate_agriculture_data
 ADD COLUMN yield_efficiency_index NUMERIC;
@@ -159,7 +160,7 @@ NULLIF(
 );
 ```
 - Climate Severity  
-Insight: Enables comparison of agricultural performance under different climate stress conditions.   
+**Insight:** Enables comparison of agricultural performance under different climate stress conditions.   
 ``` SQL
 ALTER TABLE climate_agriculture_data
 ADD COLUMN climate_severity VARCHAR(20);
@@ -187,7 +188,7 @@ END;
 ```
 
 - Irrigation Resilience Ratio  
-Insight: Higher ratios suggest stronger agricultural resilience against climate stress.   
+**Insight:** Higher ratios suggest stronger agricultural resilience against climate stress.   
 ``` SQL
 ALTER TABLE climate_agriculture_data
 ADD COLUMN irrigation_resilience_ratio NUMERIC;
@@ -196,8 +197,8 @@ SET irrigation_resilience_ratio =
 irrigation_access_percent /
 NULLIF(climate_risk_score, 0);
 ```
-CREATE ANALYTICAL VIEW  
-   Insight: Simplifies querying and improves reporting consistency across dashboards.  
+Create Analytical View  
+**Insight:** Simplifies querying and improves reporting consistency across dashboards.  
 ``` SQL
 CREATE OR REPLACE VIEW vw_agriculture_analysis AS
 SELECT
