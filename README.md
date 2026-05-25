@@ -6,7 +6,7 @@
 3. [Data Source](https://github.com/Emjay-19/Climate-Impact-on-Agricultural-Productivity/blob/main/README.md#data-source)
 4. [Tools and Methodologies](https://github.com/Emjay-19/Climate-Impact-on-Agricultural-Productivity/blob/main/README.md#tools-and-methodologies)
 5. [Business Questions](https://github.com/Emjay-19/Climate-Impact-on-Agricultural-Productivity/blob/main/README.md#business-questions)
-6. [Exploratory Data Analysis (EDA)](https://github.com/Emjay-19/Climate-Impact-on-Agricultural-Productivity/blob/main/README.md#exploratory-data-analysis-(EDA))
+6. [Exploratory Data Analysis (EDA)](https://github.com/Emjay-19/Climate-Impact-on-Agricultural-Productivity/blob/main/README.md#exploratory-data-analysis-eda)
 7. [Key Insights](https://github.com/Emjay-19/Climate-Impact-on-Agricultural-Productivity/blob/main/README.md#key-insights)
 8. [Summary of Findings](https://github.com/Emjay-19/Climate-Impact-on-Agricultural-Productivity/blob/main/README.md#summary-of-findings)
 9. [Recommendations](https://github.com/Emjay-19/Climate-Impact-on-Agricultural-Productivity/blob/main/README.md#recommendations)
