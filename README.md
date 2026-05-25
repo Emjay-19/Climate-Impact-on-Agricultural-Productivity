@@ -1,7 +1,7 @@
 # Climate-Impact-on-Agricultural-Productivity
 
 ## Table of Contents
-1. [Project Overview](https://github.com/Emjay-19/Climate-Impact-on-Agricultural-Productivity/blob/main/README.md#project-overview)
+- [Project Overview](https://github.com/Emjay-19/Climate-Impact-on-Agricultural-Productivity/blob/main/README.md#project-overview)
 2. [Problem Statement](https://github.com/Emjay-19/Climate-Impact-on-Agricultural-Productivity/blob/main/README.md#problem-statement)
 3. [Data Source](https://github.com/Emjay-19/Climate-Impact-on-Agricultural-Productivity/blob/main/README.md#data-source)
 4. [Tools and Methodologies](https://github.com/Emjay-19/Climate-Impact-on-Agricultural-Productivity/blob/main/README.md#tools-and-methodologies)
