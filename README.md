@@ -144,3 +144,10 @@ o	Evaluated irrigation access across countries.
 o	Compared farming efficiency across crop categories.
 
 
+<img width="526" height="336" alt="Screenshot 2026-05-25 074057" src="https://github.com/user-attachments/assets/ba406440-1962-42b2-aed9-9f5875f11faf" />
+
+
+<img width="561" height="333" alt="Screenshot 2026-05-25 074635" src="https://github.com/user-attachments/assets/a7e1e18f-f2d6-480c-bc70-e1d2f2954b22" />
+
+
+<img width="553" height="335" alt="Screenshot 2026-05-25 075339" src="https://github.com/user-attachments/assets/ab9c8e59-860f-49b3-b2ba-b93e2e1729d1" />
