@@ -2,8 +2,16 @@
 
 ## Table of Contents
 1. [Project Overview](https://github.com/Emjay-19/Climate-Impact-on-Agricultural-Productivity/blob/main/README.md#project-overview)
-2. [Problem Statement](##Problem Statement)
-3. [Data Source](##Data Source)
+2. [Problem Statement](https://github.com/Emjay-19/Climate-Impact-on-Agricultural-Productivity/blob/main/README.md#problem-statement)
+3. [Data Source]()
+4. [Tools and Methodologies]
+5. [Business Questions]
+6. [Exploratory Data Analysis (EDA)]
+7. [Key Insights]
+8. [Summary of Findings]
+9. [Recommendations]
+10. [Limitations]
+11. [Conclusion]
 
 
 
