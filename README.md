@@ -1,5 +1,13 @@
 # Climate-Impact-on-Agricultural-Productivity
 
+## Table of Contents
+1. [Project Overview](#Project Overview)
+2. [Problem Statement](#Problem Statement)
+3. [Data Source](#Data Source)
+
+
+
+
 ## Project Overview
 Climate change continues to influence agricultural productivity through rising temperatures, irregular rainfall patterns, climate risk exposure, and frequent extreme weather events. These environmental changes affect crop yield stability, farming efficiency, resource utilization, and economic sustainability across agricultural regions.  
 
