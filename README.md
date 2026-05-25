@@ -87,55 +87,6 @@ o	Climate Severity
 These transformations helped categorize countries, classify crop groups, evaluate climate exposure, and measure agricultural efficiency.
 
 /* =========================================================
-   CLIMATE & SUSTAINABLE AGRICULTURE ANALYTICS PROJECT
-   PURPOSE:
-   Build a structured agricultural-climate dataset for
-   SQL analysis and Power BI dashboard visualization.
-========================================================= */
-
-
-/* =========================================================
-   CREATE MAIN TABLE
-   PURPOSE:
-   Store raw agricultural, climate, environmental,
-   and economic variables for analysis.
-
-   INSIGHT:
-   This table forms the foundation of the analytical
-   model used to evaluate climate impact on agriculture.
-========================================================= */
-
-CREATE TABLE climate_agriculture_data (
-
-    date DATE,
-    country VARCHAR(100),
-    region VARCHAR(100),
-    crop_type VARCHAR(100),
-
-    average_temperature NUMERIC(5,2),
-    total_precipitation NUMERIC(10,2),
-    co2_emissions_mt NUMERIC(15,2),
-
-    crop_yield_mt_per_ha NUMERIC(10,2),
-
-    extreme_weather_events INT,
-
-    irrigation_access_percent NUMERIC(5,2),
-
-    pesticide_use_kg_per_ha NUMERIC(10,2),
-    fertilizer_use_kg_per_ha NUMERIC(10,2),
-
-    soil_health_index NUMERIC(5,2),
-
-    adaptation_strategies TEXT,
-
-    economic_impact_million_usd NUMERIC(15,2)
-
-);
-
-
-
-/* =========================================================
    COUNTRY GROUP CLASSIFICATION
    PURPOSE:
    Categorize countries into broader climate zones
