@@ -278,9 +278,9 @@ o	Which countries face the highest climate-related agricultural losses?
 Exploratory Data Analysis was conducted to identify trends, patterns, and relationships within the agricultural and climate dataset.  
 EDA Activities Performed  
 1.	Trend Analysis  
-o	Evaluated agricultural yield performance over time.
-o	Analyzed rolling yield and rolling economic impact trends.
-o	Compared current performance against historical averages.
+o	Evaluated agricultural yield performance over time.  
+o	Analyzed rolling yield and rolling economic impact trends.  
+o	Compared current performance against historical averages.  
 
 3.	Comparative Analysis  
 o	Compared agricultural productivity across countries.  
