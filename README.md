@@ -391,4 +391,4 @@ o	Expand digital agriculture initiatives for predictive climate risk management.
 •	Ultimately, the project emphasizes that food security, agricultural sustainability, and economic resilience now depend on how effectively governments, organizations, and farming systems respond to accelerating climate challenges.  
 
 
-[Link to Power BI Report](https://app.powerbi.com/groups/me/reports/e8c1a3b0-9ab2-4818-b298-3d2359bd2d7b/00e070cf4349cb9bc3a1?experience=power-bi)
+[Link to Power BI Report](https://app.powerbi.com/view?r=eyJrIjoiN2EwOTJlMDctZTYwMi00ZjhiLThiZTItZTgzYTUxMTg3ODM4IiwidCI6ImM0Njk0ZTkyLWUyYWQtNGJkOC1hZWE3LTA5MzYyOGU2YWU0ZSJ9)
