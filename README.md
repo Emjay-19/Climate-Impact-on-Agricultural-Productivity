@@ -74,8 +74,8 @@ The analysis includes agricultural data across multiple countries including:
 
 ## Tools and Methodologies  
 ### 1.	SQL  
-SQL was used for data transformation, preprocessing, and feature engineering.  
-New Columns Created in SQL  
+PoatgreSQL was used for data transformation, preprocessing, and feature engineering.  
+New Columns Created in PostgreSQL  
 The following calculated columns were created to improve analysis and segmentation:  
 
 - Country Group  
