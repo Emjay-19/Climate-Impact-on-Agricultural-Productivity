@@ -391,3 +391,6 @@ o	Expand digital agriculture initiatives for predictive climate risk management.
 •	The analysis demonstrates that changing weather patterns are reducing crop productivity, weakening irrigation resilience, degrading soil health, and increasing financial losses across agricultural systems. The findings also reveal that traditional farming methods are struggling to adapt quickly enough to long-term climate changes.  
 •	The dashboards highlight the urgent need for climate adaptation strategies, sustainable resource management, improved irrigation systems, and stronger financial protection mechanisms for vulnerable agricultural sectors.  
 •	Ultimately, the project emphasizes that food security, agricultural sustainability, and economic resilience now depend on how effectively governments, organizations, and farming systems respond to accelerating climate challenges.  
+
+
+[Link to Power BI Report](https://app.powerbi.com/groups/me/reports/e8c1a3b0-9ab2-4818-b298-3d2359bd2d7b/00e070cf4349cb9bc3a1?experience=power-bi)
