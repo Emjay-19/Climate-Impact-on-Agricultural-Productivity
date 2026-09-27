@@ -74,7 +74,7 @@ The analysis includes agricultural data across multiple countries including:
 
 ## Tools and Methodologies  
 ### 1.	SQL  
-PoatgreSQL was used for data transformation, preprocessing, and feature engineering.  
+PostgreSQL was used for data transformation, preprocessing, and feature engineering.  
 New Columns Created in PostgreSQL  
 The following calculated columns were created to improve analysis and segmentation:  
 
@@ -318,7 +318,7 @@ Countries such as Nigeria performed slightly above the global average in crop pr
 
 Temperature increases and unstable rainfall patterns continue to weaken agricultural productivity across severe climate zones. Stable and moderate climate conditions still support stronger crop performance, but regions experiencing climate extremes are seeing increasing production instability.   
 
-**3.	Resource Efficiency Insights**  
+**2.	Resource Efficiency Insights**  
 The most alarming finding in the analysis is the collapse in irrigation resilience. Irrigation resilience dropped by 41.8% in a single year, showing that water systems and backup irrigation supplies are failing to keep up with hotter and drier climate conditions. This sharp decline signals a growing water security crisis that threatens the future sustainability of traditional farming systems.    
 
 Farmers are increasingly responding to climate pressure by relying heavily on fertilizers and pesticides to maintain crop output. Fertilizer efficiency improved slightly by 3.4%, showing that chemical inputs are temporarily helping sustain production levels despite worsening environmental conditions. However, this short-term survival strategy is creating long-term damage.  
@@ -327,7 +327,7 @@ Soil health index declined by over 2% year-over-year, proving that excessive dep
 
 Countries with stronger irrigation systems such as Australia and Canada demonstrated greater agricultural resilience and productivity stability compared to countries with weaker water infrastructure. The data highlights that access to reliable irrigation is becoming one of the most important factors determining future agricultural survival.   
 
-**4.	Economic Vulnerability Insights**  
+**3.	Economic Vulnerability Insights**  
 Climate-related agricultural damage reached a total economic impact of $6.74M, showing that climate variability is no longer a distant environmental concern but an immediate financial crisis affecting food systems globally. In addition, every failed harvest resulted in an average loss of approximately $300 per unit of agricultural yield lost.   
 
 Nearly 32% of all agricultural financial losses were classified as high-risk losses, representing approximately $3.78M in damage that could not be recovered through standard insurance protection or financial safety measures. This indicates that severe weather events are no longer simply reducing profits but are completely wiping out farming operations and livelihoods.   
